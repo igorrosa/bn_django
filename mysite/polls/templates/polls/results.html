@@ -1,0 +1,10 @@
+{% extends "polls\base.html" %}
+
+{% block content %}
+{# to jest komentarz #}
+{% for choice in question.choice_set.all %}
+    {{choice.choice_text}}: {{choice.votes}}<br>
+{% endfor %}
+
+<a href = "{% url 'polls:detail' question.id%}"> Czy chcesz znów zagłosować?</a>
+{% endblock %}

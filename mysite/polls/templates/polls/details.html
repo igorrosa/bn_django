@@ -1,0 +1,21 @@
+{% extends "polls\base.html" %}
+{% block title%} Title2 {% endblock %}
+{% block content%}
+    Jesteś na stronie szczegółów pytania {{question.id}}: <br>
+    {{question.question_text}}
+    <ul>
+        {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }}</li>
+        {% endfor %}
+    </ul>
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{forloop.counter}}" value = "{{choice.id}}">
+    <label for="choice{{forloop.counter}}">{{ choice.choice_text }}</label><br>
+    </input>
+    {% endfor %}
+    <input type="submit" value="Vote">
+</form>
+
+{% endblock %}

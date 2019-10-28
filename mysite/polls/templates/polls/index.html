@@ -1,0 +1,27 @@
+{% extends "polls/base.html" %}
+
+{% block content %}
+Hello! <br>
+<ul>
+{% for q in questions %}
+    <li><a href="{% url 'polls:detail' q.id %}">| {{ q.id }} | {{ q.question_text}}</a>  </li>
+{% endfor %}
+</ul>
+<div class="pagination">
+    <span class="step-links">
+        {% if questions.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ questions.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
+        </span>
+
+        {% if questions.has_next %}
+            <a href="?page={{ questions.next_page_number }}">next</a>
+            <a href="?page={{ questions.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock content %}
