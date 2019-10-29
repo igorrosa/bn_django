@@ -20,7 +20,7 @@
         </td>
     </tr>
      <tr>
-        <th>Okładka</th>
+        <th>Wypożyczenia</th>
         <td>
             {% if book.is_available %}
                 <a href="{% url 'books:loan' book.id %}" class="btn btn-success">Wypożycz</a>

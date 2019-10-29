@@ -3,7 +3,7 @@ from . import views
 app_name = "books"
 
 urlpatterns = [
-    #path("", views.home, ),
+    path("", views.home, name="home"),
     # ex: /books/
     path("books_list", views.books_list, name="books_list"),
     path("books", views.books, name="books"),

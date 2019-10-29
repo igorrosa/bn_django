@@ -14,7 +14,7 @@
     </thead>
 {% for book in books %}
     <tr>
-        <td><a href="{% url 'books:details' book.id %}">{{ book.title }}</a></td>
+        <td><a href="{% url 'books:details' book.id %}">{{ book.title }}</a></td> {# jak działa ten url #}
         <td>{{ book.authors }}</td>
 
         <td>
