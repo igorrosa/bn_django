@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.utils import timezone
+
 from .models import Question
 from django.urls import reverse
 from django.views import generic
@@ -38,6 +40,10 @@ def index2(request):
 def detail(request, question_id):
     #można try except + raise http404 i odniesienie
     question = get_object_or_404(Question, pk=question_id)
+    #Question.objects.get(pk=22, pub_date__lt=timezone.now()) tez mozna
+
+    if question.pub_date > timezone.now():
+        raise Http404
     #output = "Jesteś na stronie szczegółów pytania %s" % question_id
     #output += str(question)
     context = {

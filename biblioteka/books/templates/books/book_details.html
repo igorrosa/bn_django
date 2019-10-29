@@ -1,0 +1,35 @@
+{# nie mój kod przejrzeć napisać samemu#}
+{% extends "books\base.html" %}
+
+{% block content %}
+<table class="table">
+    <tr>
+        <th>Tytuł</th>
+        <td>{{book.title}}</td>
+    </tr>
+    <tr>
+        <th>Autorzy</th>
+        <td>{{book.authors}}</td>
+    </tr>
+    <tr>
+        <th>Okładka</th>
+        <td>
+            {% if book.cover_image %}
+            <img width="200px" src="{{ book.cover_image.url }}">
+            {% endif %}
+        </td>
+    </tr>
+     <tr>
+        <th>Okładka</th>
+        <td>
+            {% if book.is_available %}
+                <a href="{% url 'books:loan' book.id %}" class="btn btn-success">Wypożycz</a>
+            {% else %}
+                <a href="{% url 'books:loan_back' book.id %}" class="btn btn-success">Zwróć</a>
+            {% endif %}
+        </td>
+    </tr>
+
+</table>
+
+{% endblock %}

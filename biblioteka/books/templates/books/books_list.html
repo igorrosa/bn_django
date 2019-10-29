@@ -1,0 +1,30 @@
+{# nie mój kod przejrzeć napisać samemu#}
+{% extends "books\base.html" %}
+
+{% block content %}
+
+<table class="table table-stripped">
+    <thead>
+    <tr>
+        <th>Tytul</th>
+        <th>Autorzy</th>
+        <th>Okładka</th>
+        <td>Czy dostępna</td>
+    </tr>
+    </thead>
+{% for book in books %}
+    <tr>
+        <td><a href="{% url 'books:details' book.id %}">{{ book.title }}</a></td>
+        <td>{{ book.authors }}</td>
+
+        <td>
+            {% if book.cover_image %}
+            <img width="200px" src="{{ book.cover_image.url }}">
+            {% endif %}
+        </td>
+        <td>{{ book.is_avaiable }}</td>
+    </tr>
+
+{%endfor%}
+</table>
+{% endblock %}
