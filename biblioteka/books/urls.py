@@ -1,4 +1,6 @@
 from django.urls import path
+
+from books.views import author_form_test
 from . import views
 app_name = "books"
 
@@ -11,5 +13,6 @@ urlpatterns = [
     path("authors_list", views.authors_list, name="authors_list"),
     path("authors", views.authors, name="authors"),
     path("<int:book_id>/loan", views.loan, name="loan"),
-    path("/<int:book_id>/loan_back", views.loan_back, name="loan_back"),
+    path("<int:book_id>/loan_back", views.loan_back, name="loan_back"),
+
 ]

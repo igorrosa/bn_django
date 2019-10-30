@@ -19,14 +19,20 @@
             {% endif %}
         </td>
     </tr>
+
      <tr>
         <th>Wypożyczenia</th>
         <td>
-            {% if book.is_available %}
-                <a href="{% url 'books:loan' book.id %}" class="btn btn-success">Wypożycz</a>
-            {% else %}
-                <a href="{% url 'books:loan_back' book.id %}" class="btn btn-success">Zwróć</a>
-            {% endif %}
+            <form method="post">
+                {% if request.user.is_authenticated%}
+                    {% csrf_token %}
+                    {% if book.is_available %}
+                        <input type ="submit" name="loan" class="btn btn-danger" value="Wypożycz">
+                    {% else %}
+                        <input type ="submit" name="loan_back" class="btn btn-success" value="Zwróć">
+                    {% endif %}
+                {% endif %}
+            </form>
         </td>
     </tr>
 

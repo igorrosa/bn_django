@@ -48,6 +48,19 @@
     </div>
   </header>
 
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <p class="alert alert-primary">  {{ mojedane }} </p>
+              {% if messages %}
+                {% for message in messages %}
+                    <p class="alert alert-{{ message.tags }}">  {{ message }} </p>
+                {% endfor %}
+              {% endif %}
+          </div>
+      </div>
+  </div>
+
   <!-- About Section -->
   <section id="about" class="about-section text-center">
     {% block content %}

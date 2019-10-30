@@ -18,12 +18,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+import accounts.views
+from books.views import author_form_test
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="books/home.html")),
     path('home/', include("books.urls")),  # jesli trafi na /books/ to kieruje do books.urls
     #path('authors/', include("books.urls"), name="authors"),
+    path("logout/", accounts.views.logout_user, name="logout"),
+    path("login/", accounts.views.login_user, name="login"),
+    path("testform/", author_form_test, name="testform"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
